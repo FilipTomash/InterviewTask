@@ -6,18 +6,18 @@ const grid: string[][] = [
   ["s", " ", " ", " ", "C", "-", "-", "-", "+"],
 ];
 
-let x: number = 0;
-let y: number = 0;
+let row: number = 0;
+let column: number = 0;
 let path: string = "";
 let letters: string = "";
 let comingFrom: string = "";
 
 while (!path.includes("s")) {
-  let current: string = grid[y][x];
-  let left: string = grid[y]?.[x - 1];
-  let right: string = grid[y]?.[x + 1];
-  let up: string = grid[y - 1]?.[x];
-  let down: string = grid[y + 1]?.[x];
+  let current: string = grid[column][row];
+  let left: string = grid[column]?.[row - 1];
+  let right: string = grid[column]?.[row + 1];
+  let up: string = grid[column - 1]?.[row];
+  let down: string = grid[column + 1]?.[row];
 
   // * If the ">" sign needs to be "@" in the path
   // if (current === ">") {
@@ -33,16 +33,16 @@ while (!path.includes("s")) {
   }
 
   if (left?.trim() && comingFrom !== "L") {
-    x--;
+    row--;
     comingFrom = "R";
   } else if (right?.trim() && comingFrom !== "R") {
-    x++;
+    row++;
     comingFrom = "L";
   } else if (up?.trim() && comingFrom !== "U") {
-    y--;
+    column--;
     comingFrom = "D";
   } else if (down?.trim() && comingFrom !== "D") {
-    y++;
+    column++;
     comingFrom = "U";
   }
 }
